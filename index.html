@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar de Ofertas</title>
+<meta name="description" content="Canal grátis com promoções da Amazon todo dia, de tudo um pouco. Entre no Telegram e receba as ofertas.">
+<meta name="theme-color" content="#0b1f3a">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+/* Layout: página única, faixa de navegação fixa, hero com canal em destaque, depois categorias em grade, passos, perguntas e rodapé com avisos. */
+:root{
+  --bg:#0b1f3a; --surface:#12294a; --line:#25406a; --fg:#eef3fb; --muted:#a9b9d3;
+  --accent:#2ee6a6; --accent-fg:#06281c; --warn:#ffc93c;
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'DM Sans','Segoe UI',system-ui,sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#f3f6fb; --surface:#ffffff; --line:#d3deee; --fg:#0b1f3a; --muted:#4d6286;
+  --accent:#0a8f66; --accent-fg:#ffffff; --warn:#8a5f00; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#f3f6fb; --surface:#ffffff; --line:#d3deee; --fg:#0b1f3a; --muted:#4d6286;
+  --accent:#0a8f66; --accent-fg:#ffffff; --warn:#8a5f00; color-scheme:light}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;margin:0;padding-inline:20px}
+a{color:inherit}
+.wrap{max-width:1040px;margin-inline:auto}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:800;font-size:1.25rem;text-decoration:none;display:flex;align-items:center;gap:10px}
+.dot{width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent),0 0 0 9px color-mix(in srgb,var(--accent) 10%,transparent)}
+nav{display:flex;gap:20px;font-size:.95rem;flex-wrap:wrap}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover,nav a:focus-visible{color:var(--fg)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--warn);outline-offset:3px;border-radius:6px}
+.hero{padding-block:48px 56px;display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,6vw,3.7rem);line-height:1.05;margin:0 0 18px;text-wrap:balance;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{color:var(--muted);font-size:1.12rem;max-width:34em;margin:0 0 26px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-fg);font-weight:700;text-decoration:none;padding:15px 24px;border-radius:12px;font-size:1.05rem}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.note{font-size:.88rem;color:var(--muted);margin:14px 0 0}
+.radar{aspect-ratio:1;max-width:340px;width:100%;margin-inline:auto;border-radius:50%;position:relative;border:1.5px solid var(--line);
+  background:radial-gradient(circle,transparent 0 24%,var(--line) 24.4% 25%,transparent 25.4% 49%,var(--line) 49.4% 50%,transparent 50.4% 74%,var(--line) 74.4% 75%,transparent 75.4%)}
+.radar::before,.radar::after{content:"";position:absolute;background:var(--line)}
+.radar::before{left:50%;top:0;bottom:0;width:1px}
+.radar::after{top:50%;left:0;right:0;height:1px}
+.sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 78%,color-mix(in srgb,var(--accent) 55%,transparent) 100%);animation:spin 6s linear infinite}
+.blip{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--warn)}
+.b1{left:64%;top:26%}.b2{left:30%;top:60%}.b3{left:70%;top:68%}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.sweep{animation:none}}
+section{padding-block:44px;border-top:1px solid var(--line)}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.15;margin:0 0 10px;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 26px;max-width:40em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.cat{display:flex;flex-direction:column;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;text-decoration:none;min-width:0}
+.cat:hover{border-color:var(--accent)}
+.cat b{font-family:var(--display);font-size:1.12rem}
+.cat span{color:var(--muted);font-size:.9rem}
+.cat i{font-style:normal;color:var(--accent);font-weight:700;font-size:.9rem;margin-top:8px}
+.cat.hl{border-color:var(--accent)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;padding:0;margin:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;min-width:0}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-weight:800;margin-bottom:10px}
+.steps b{display:block;font-family:var(--display);font-size:1.12rem;margin-bottom:4px}
+.steps span{color:var(--muted)}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.trust div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.trust b{display:block;font-family:var(--display);margin-bottom:4px}
+.trust span{color:var(--muted);font-size:.96rem}
+details{border-bottom:1px solid var(--line);padding-block:14px}
+summary{cursor:pointer;font-weight:700;font-family:var(--display);font-size:1.08rem}
+details p{color:var(--muted);margin:10px 0 0}
+.cta{text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:40px 22px}
+.cta .row{justify-content:center}
+footer{padding-block:34px 44px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+footer p{margin:0 0 10px;max-width:60em}
+footer strong{color:var(--fg)}
+@media (max-width:760px){.hero{grid-template-columns:1fr;gap:30px;padding-block:28px 40px}.radar{max-width:240px}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#inicio"><span class="dot"></span>Radar de Ofertas</a>
+    <nav aria-label="Seções">
+      <a href="#categorias">Categorias</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#confianca">Transparência</a>
+      <a href="#perguntas">Perguntas</a>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <div class="hero">
+      <div>
+        <h1>Promoções da Amazon todo dia, <em>de tudo um pouco.</em></h1>
+        <p class="lead">Entre no canal grátis do Telegram e receba as ofertas assim que elas saem: tênis, roupas, cozinha, casa, eletrônicos e muito mais. Cada oferta chega com o link direto para a Amazon.</p>
+        <div class="row">
+          <a class="btn" href="https://t.me/ofertasradar_oficial" target="_blank" rel="noopener">Entrar no canal do Telegram</a>
+          <a class="btn ghost" href="https://www.instagram.com/canalradardeofertas.oficial/" target="_blank" rel="noopener">Seguir no Instagram</a>
+        </div>
+        <p class="note">Entrar é grátis e você sai quando quiser. Não tem Telegram? <a href="https://linktr.ee/contatocanaldeofertas.oficial" target="_blank" rel="noopener">Veja todos os links aqui</a>.</p>
+      </div>
+      <div class="radar" role="img" aria-label="Radar com três pontos amarelos, cada um representando uma oferta encontrada">
+        <div class="sweep"></div><span class="blip b1"></span><span class="blip b2"></span><span class="blip b3"></span>
+      </div>
+    </div>
+
+    <section id="categorias">
+      <h2>Procure direto na Amazon</h2>
+      <p class="sub">Atalhos para as áreas mais buscadas. Os preços e descontos aparecem na própria Amazon, sempre atualizados.</p>
+      <div class="grid">
+        <a class="cat hl" href="https://www.amazon.com.br/gp/bestsellers?tag=canalradardeo-20" target="_blank" rel="noopener sponsored"><b>Mais vendidos</b><span>O que mais sai na Amazon agora, em todas as áreas.</span><i>Ver na Amazon ></i></a>
+        <a class="cat hl" href="https://www.amazon.com.br/gp/goldbox?tag=canalradardeo-20" target="_blank" rel="noopener sponsored"><b>Ofertas do dia</b><span>Promoções com tempo limitado, atualizadas pela Amazon.</span><i>Ver na Amazon ></i></a>
+        <a class="cat" href="https://www.amazon.com.br/s?k=t%C3%AAnis&tag=canalradardeo-20" target="_blank" rel="noopener sponsored"><b>Tênis e calçados</b><span>Esportivos, casuais e de trabalho.</span><i>Ver na Amazon ></i></a>
+        <a class="cat" href="https://www.amazon.com.br/s?k=roupas&tag=canalradardeo-20" target="_blank" rel="noopener sponsored"><b>Roupas e moda</b><span>Masculino, feminino e infantil.</span><i>Ver na Amazon ></i></a>
+        <a class="cat" href="https://www.amazon.com.br/s?k=air+fryer&tag=canalradardeo-20" target="_blank" rel="noopener sponsored"><b>Cozinha</b><span>Air fryer, panelas, utensílios.</span><i>Ver na Amazon ></i></a>
+        <a class="cat" href="https://www.amazon.com.br/s?k=decora%C3%A7%C3%A3o+casa&tag=canalradardeo-20" target="_blank" rel="noopener sponsored"><b>Casa e decoração</b><span>Organização, cama, mesa e banho.</span><i>Ver na Amazon ></i></a>
+        <a class="cat" href="https://www.amazon.com.br/s?k=fone+de+ouvido&tag=canalradardeo-20" target="_blank" rel="noopener sponsored"><b>Eletrônicos</b><span>Fones, caixas de som, TVs e acessórios.</span><i>Ver na Amazon ></i></a>
+        <a class="cat" href="https://www.amazon.com.br/s?k=notebook&tag=canalradardeo-20" target="_blank" rel="noopener sponsored"><b>Informática</b><span>Notebooks, monitores, periféricos.</span><i>Ver na Amazon ></i></a>
+        <a class="cat" href="https://www.amazon.com.br/s?k=celular&tag=canalradardeo-20" target="_blank" rel="noopener sponsored"><b>Celulares</b><span>Smartphones, capas e carregadores.</span><i>Ver na Amazon ></i></a>
+        <a class="cat" href="https://www.amazon.com.br/s?k=brinquedos&tag=canalradardeo-20" target="_blank" rel="noopener sponsored"><b>Brinquedos e bebê</b><span>Para todas as idades.</span><i>Ver na Amazon ></i></a>
+      </div>
+    </section>
+
+    <section id="como-funciona">
+      <h2>Como funciona</h2>
+      <p class="sub">Simples e sem custo para você.</p>
+      <ol class="steps">
+        <li><b>Entre no canal</b><span>Toque no botão do Telegram e escolha "Entrar". As ofertas chegam durante o dia.</span></li>
+        <li><b>Abra a oferta</b><span>Cada post traz o produto, o preço de antes e o de agora, e um botão de compra.</span></li>
+        <li><b>Compre na Amazon</b><span>O pagamento e a entrega são feitos pela Amazon, com as mesmas garantias de sempre.</span></li>
+      </ol>
+    </section>
+
+    <section id="confianca">
+      <h2>Transparência</h2>
+      <p class="sub">Você merece saber como este site funciona.</p>
+      <div class="trust">
+        <div><b>Não vendemos nada</b><span>Este site não tem loja nem carrinho. Toda compra acontece dentro da Amazon.</span></div>
+        <div><b>O preço é o mesmo</b><span>Comprar pelos nossos links não deixa o produto mais caro para você.</span></div>
+        <div><b>Somos Associados da Amazon</b><span>Quando uma compra é feita pelos nossos links, a Amazon paga uma pequena comissão ao Radar de Ofertas. É assim que o canal se mantém grátis.</span></div>
+        <div><b>Preço conferido, sem promessa</b><span>Conferimos o desconto na página do produto ao publicar. Preço e estoque mudam, então o valor que vale é o que aparece na Amazon.</span></div>
+      </div>
+    </section>
+
+    <section id="perguntas">
+      <h2>Perguntas frequentes</h2>
+      <details><summary>O canal é gratuito?</summary><p>Sim. Entrar e receber as ofertas não custa nada.</p></details>
+      <details><summary>Preciso ter Telegram?</summary><p>Para receber os avisos, sim, e o aplicativo também é grátis. Se preferir não instalar, acompanhe pelo Instagram @canalradardeofertas.oficial ou use os atalhos da seção Categorias.</p></details>
+      <details><summary>O produto chega pela Amazon mesmo?</summary><p>Sim. Você finaliza a compra no site da Amazon, que cuida do pagamento, da entrega e da troca ou devolução.</p></details>
+      <details><summary>Por que o preço no site pode estar diferente do post?</summary><p>A Amazon altera preços e estoques ao longo do dia. Vale sempre o valor mostrado na página do produto no momento da compra.</p></details>
+      <details><summary>Vocês guardam meus dados?</summary><p>Este site não pede cadastro nem coleta dados pessoais. Ao entrar no Telegram ou comprar na Amazon, valem as políticas de cada plataforma.</p></details>
+    </section>
+
+    <section>
+      <div class="cta">
+        <h2>Receba a próxima oferta primeiro</h2>
+        <p class="sub" style="margin-inline:auto">As melhores promoções costumam durar pouco. Entre no canal e ative as notificações.</p>
+        <div class="row"><a class="btn" href="https://t.me/ofertasradar_oficial" target="_blank" rel="noopener">Entrar no canal do Telegram</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Aviso de afiliado:</strong> Como Associado Amazon, o Radar de Ofertas ganha com compras qualificadas. Os links para a Amazon deste site contêm um código de afiliado.</p>
+    <p>Amazon e o logotipo Amazon são marcas da Amazon.com, Inc. ou de suas afiliadas. Este site é independente e não é operado pela Amazon. Preços, descontos e disponibilidade mudam e são os informados na página do produto na Amazon.</p>
+    <p>Contato: Instagram <a href="https://www.instagram.com/canalradardeofertas.oficial/" target="_blank" rel="noopener">@canalradardeofertas.oficial</a> · Telegram <a href="https://t.me/ofertasradar_oficial" target="_blank" rel="noopener">t.me/ofertasradar_oficial</a></p>
+    <p><a href="politica-de-privacidade.html">Política de privacidade</a> · © 2026 Radar de Ofertas</p>
+  </footer>
+</div>
+</body>
+</html>

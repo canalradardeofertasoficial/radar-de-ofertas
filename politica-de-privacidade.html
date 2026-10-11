@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de Privacidade - Radar de Ofertas</title>
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+/* Layout: página única, faixa de navegação fixa, hero com canal em destaque, depois categorias em grade, passos, perguntas e rodapé com avisos. */
+:root{
+  --bg:#0b1f3a; --surface:#12294a; --line:#25406a; --fg:#eef3fb; --muted:#a9b9d3;
+  --accent:#2ee6a6; --accent-fg:#06281c; --warn:#ffc93c;
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'DM Sans','Segoe UI',system-ui,sans-serif;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#f3f6fb; --surface:#ffffff; --line:#d3deee; --fg:#0b1f3a; --muted:#4d6286;
+  --accent:#0a8f66; --accent-fg:#ffffff; --warn:#8a5f00; color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#f3f6fb; --surface:#ffffff; --line:#d3deee; --fg:#0b1f3a; --muted:#4d6286;
+  --accent:#0a8f66; --accent-fg:#ffffff; --warn:#8a5f00; color-scheme:light}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;margin:0;padding-inline:20px}
+a{color:inherit}
+.wrap{max-width:1040px;margin-inline:auto}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:800;font-size:1.25rem;text-decoration:none;display:flex;align-items:center;gap:10px}
+.dot{width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent),0 0 0 9px color-mix(in srgb,var(--accent) 10%,transparent)}
+nav{display:flex;gap:20px;font-size:.95rem;flex-wrap:wrap}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover,nav a:focus-visible{color:var(--fg)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--warn);outline-offset:3px;border-radius:6px}
+.hero{padding-block:48px 56px;display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,6vw,3.7rem);line-height:1.05;margin:0 0 18px;text-wrap:balance;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{color:var(--muted);font-size:1.12rem;max-width:34em;margin:0 0 26px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-fg);font-weight:700;text-decoration:none;padding:15px 24px;border-radius:12px;font-size:1.05rem}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.note{font-size:.88rem;color:var(--muted);margin:14px 0 0}
+.radar{aspect-ratio:1;max-width:340px;width:100%;margin-inline:auto;border-radius:50%;position:relative;border:1.5px solid var(--line);
+  background:radial-gradient(circle,transparent 0 24%,var(--line) 24.4% 25%,transparent 25.4% 49%,var(--line) 49.4% 50%,transparent 50.4% 74%,var(--line) 74.4% 75%,transparent 75.4%)}
+.radar::before,.radar::after{content:"";position:absolute;background:var(--line)}
+.radar::before{left:50%;top:0;bottom:0;width:1px}
+.radar::after{top:50%;left:0;right:0;height:1px}
+.sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 78%,color-mix(in srgb,var(--accent) 55%,transparent) 100%);animation:spin 6s linear infinite}
+.blip{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--warn)}
+.b1{left:64%;top:26%}.b2{left:30%;top:60%}.b3{left:70%;top:68%}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.sweep{animation:none}}
+section{padding-block:44px;border-top:1px solid var(--line)}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.15;margin:0 0 10px;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 26px;max-width:40em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.cat{display:flex;flex-direction:column;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;text-decoration:none;min-width:0}
+.cat:hover{border-color:var(--accent)}
+.cat b{font-family:var(--display);font-size:1.12rem}
+.cat span{color:var(--muted);font-size:.9rem}
+.cat i{font-style:normal;color:var(--accent);font-weight:700;font-size:.9rem;margin-top:8px}
+.cat.hl{border-color:var(--accent)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;padding:0;margin:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;min-width:0}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-weight:800;margin-bottom:10px}
+.steps b{display:block;font-family:var(--display);font-size:1.12rem;margin-bottom:4px}
+.steps span{color:var(--muted)}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.trust div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.trust b{display:block;font-family:var(--display);margin-bottom:4px}
+.trust span{color:var(--muted);font-size:.96rem}
+details{border-bottom:1px solid var(--line);padding-block:14px}
+summary{cursor:pointer;font-weight:700;font-family:var(--display);font-size:1.08rem}
+details p{color:var(--muted);margin:10px 0 0}
+.cta{text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:40px 22px}
+.cta .row{justify-content:center}
+footer{padding-block:34px 44px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+footer p{margin:0 0 10px;max-width:60em}
+footer strong{color:var(--fg)}
+@media (max-width:760px){.hero{grid-template-columns:1fr;gap:30px;padding-block:28px 40px}.radar{max-width:240px}}
+</style><style>.doc{max-width:46em;margin-inline:auto;padding-block:28px 56px}.doc h1{font-size:clamp(1.8rem,5vw,2.6rem)}.doc h2{font-size:1.3rem;margin-top:30px}.doc p,.doc li{color:var(--muted)}.doc a{color:var(--accent)}</style>
+</head>
+<body>
+<div class="wrap"><header class="top"><a class="brand" href="index.html"><span class="dot"></span>Radar de Ofertas</a></header>
+<main class="doc">
+<h1>Política de Privacidade</h1>
+<p>Última atualização: 11 de outubro de 2026.</p>
+
+<h2>Quem somos</h2>
+<p>O Radar de Ofertas é um canal independente que divulga promoções de produtos vendidos na Amazon Brasil. Este site apresenta o canal e reúne atalhos para a Amazon. Não vendemos produtos nem processamos pagamentos.</p>
+
+<h2>Dados que coletamos</h2>
+<p>Este site não tem cadastro, formulário nem comentários, e não coletamos dados pessoais diretamente. Como em qualquer site, o provedor de hospedagem pode registrar dados técnicos de acesso (como endereço IP, navegador e data do acesso) para segurança e funcionamento.</p>
+
+<h2>Links para outros serviços</h2>
+<p>Ao tocar nos botões e nos atalhos, você sai deste site e passa a seguir as regras do serviço de destino:</p>
+<ul>
+<li><strong>Amazon:</strong> a compra, o pagamento, a entrega e o tratamento dos seus dados são feitos pela Amazon, conforme os avisos de privacidade dela. Nossos links contêm um código de afiliado que permite à Amazon identificar que a visita veio daqui, e a Amazon pode usar cookies para isso.</li>
+<li><strong>Telegram e Instagram:</strong> valem as políticas de cada plataforma. O Radar de Ofertas não tem acesso a dados de contato de quem entra no canal.</li>
+</ul>
+
+<h2>Programa de Associados da Amazon</h2>
+<p>Como Associado Amazon, o Radar de Ofertas ganha com compras qualificadas feitas pelos links deste site e do canal. O preço pago por você não muda por causa disso. Os preços, descontos e a disponibilidade dos produtos são os exibidos na Amazon no momento da compra e podem mudar sem aviso.</p>
+
+<h2>Seus direitos</h2>
+<p>Conforme a Lei Geral de Proteção de Dados (Lei nº 13.709/2018), você pode pedir informações sobre o tratamento dos seus dados pessoais. Como não coletamos dados diretamente, para solicitações sobre dados mantidos pela Amazon, pelo Telegram ou pelo Instagram, procure essas empresas.</p>
+
+<h2>Contato</h2>
+<p>Dúvidas sobre esta política: Instagram <a href="https://www.instagram.com/canalradardeofertas.oficial/" target="_blank" rel="noopener">@canalradardeofertas.oficial</a>.</p>
+
+<h2>Alterações</h2>
+<p>Podemos atualizar esta política. A data no topo da página mostra a versão mais recente.</p>
+</main>
+<footer><p><strong>Aviso de afiliado:</strong> Como Associado Amazon, o Radar de Ofertas ganha com compras qualificadas.</p><p><a href="index.html">Voltar ao início</a></p></footer>
+</div>
+</body>
+</html>
